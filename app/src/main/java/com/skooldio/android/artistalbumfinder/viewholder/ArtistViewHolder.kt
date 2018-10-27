@@ -8,10 +8,16 @@ import kotlinx.android.synthetic.main.artist_viewholder.view.*
 /**
  * Created by Boonya Kitpitak on 10/25/18.
  */
-class ArtistViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class ArtistViewHolder(view: View, itemClick: (Int) -> Unit) : RecyclerView.ViewHolder(view) {
 
     private val nameTextView = itemView.artistNameTextView
     private val genreTextView = itemView.genreTextView
+
+    init {
+        itemView.setOnClickListener {
+            itemClick(adapterPosition)
+        }
+    }
 
     fun bindUi(artist: Artist) {
         nameTextView.text = artist.name

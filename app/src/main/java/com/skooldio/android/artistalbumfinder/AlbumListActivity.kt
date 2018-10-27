@@ -16,6 +16,9 @@ class AlbumListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album_list)
 
+        val artistName: String = intent?.extras?.getString(MainActivity.ARTIST_NAME_EXTRA) ?: ""
+        title = artistName
+
         val albumList: List<Album> = listOf(
                 Album("Album1", "20/01/1985", 20, "Rock"),
                 Album("Album2", "20/01/1990", 10, "Rock"),

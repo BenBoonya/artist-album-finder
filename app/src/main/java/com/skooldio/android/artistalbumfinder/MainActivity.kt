@@ -1,5 +1,6 @@
 package com.skooldio.android.artistalbumfinder
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -8,6 +9,10 @@ import com.skooldio.android.artistalbumfinder.model.Artist
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val ARTIST_NAME_EXTRA = "artist_name_extra"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,11 +25,19 @@ class MainActivity : AppCompatActivity() {
                 Artist("BNK48"),
                 Artist("Oasis", "British Rock")
         )
-        val adapter = ArtistAdapter()
+        val adapter = ArtistAdapter {
+            navigateToAlbumList(it)
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
 
         adapter.values = artistList
+    }
+
+    private fun navigateToAlbumList(artist: Artist) {
+        val intent = Intent(this, AlbumListActivity::class.java)
+        intent.putExtra(ARTIST_NAME_EXTRA, artist.name)
+        startActivity(intent)
     }
 }
