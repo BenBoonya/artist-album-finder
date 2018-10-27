@@ -36,6 +36,8 @@ class AlbumListActivity : AppCompatActivity() {
                 Album("Album13", "20/01/2018", 9, "Rock")
         )
         val adapter = AlbumAdapter {
+            // TODO Change to string resource R.strings.label_number_of_track_in_album
+            //getString(R.strings.label_number_of_track_in_album, album name, track number)
             toast(it.toString())
         }
 

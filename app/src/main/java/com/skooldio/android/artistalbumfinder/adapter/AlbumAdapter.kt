@@ -10,7 +10,9 @@ import com.skooldio.android.artistalbumfinder.viewholder.AlbumViewHolder
 /**
  * Created by Boonya Kitpitak on 10/27/18.
  */
-class AlbumAdapter(private val itemClick: (Int) -> Unit) : RecyclerView.Adapter<AlbumViewHolder>() {
+class AlbumAdapter(
+        //TODO Change param type of Lambda
+        private val itemClick: (Int) -> Unit) : RecyclerView.Adapter<AlbumViewHolder>() {
 
     var values: List<Album> = ArrayList(0)
         set(value) {
@@ -21,6 +23,7 @@ class AlbumAdapter(private val itemClick: (Int) -> Unit) : RecyclerView.Adapter<
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): AlbumViewHolder {
         val viewHolder = LayoutInflater.from(parent.context).inflate(R.layout.album_viewholder, parent, false)
         return AlbumViewHolder(viewHolder) {
+            //TODO Change param of lambda from position to Album
             itemClick(it)
         }
     }
