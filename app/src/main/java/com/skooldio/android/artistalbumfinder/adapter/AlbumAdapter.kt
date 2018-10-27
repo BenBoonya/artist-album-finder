@@ -10,7 +10,7 @@ import com.skooldio.android.artistalbumfinder.viewholder.AlbumViewHolder
 /**
  * Created by Boonya Kitpitak on 10/27/18.
  */
-class AlbumAdapter : RecyclerView.Adapter<AlbumViewHolder>() {
+class AlbumAdapter(private val itemClick: (Int) -> Unit) : RecyclerView.Adapter<AlbumViewHolder>() {
 
     var values: List<Album> = ArrayList(0)
         set(value) {
@@ -20,7 +20,9 @@ class AlbumAdapter : RecyclerView.Adapter<AlbumViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): AlbumViewHolder {
         val viewHolder = LayoutInflater.from(parent.context).inflate(R.layout.album_viewholder, parent, false)
-        return AlbumViewHolder(viewHolder)
+        return AlbumViewHolder(viewHolder) {
+            TODO("not implemented") //invoke itemClick
+        }
     }
 
     override fun getItemCount(): Int = values.size

@@ -10,13 +10,18 @@ import kotlinx.android.synthetic.main.album_viewholder.view.*
 /**
  * Created by Boonya Kitpitak on 10/27/18.
  */
-class AlbumViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class AlbumViewHolder(view: View, private val itemClick: (Int) -> Unit) : RecyclerView.ViewHolder(view) {
     private val albumNameTextView = itemView.albumNameTexView
     private val trackCountTextView = itemView.trackCountTextView
     private val genreTextView = itemView.genreTextView
     private val releaseDateTextView = itemView.releaseDateTextView
 
     private val context: Context by lazy { itemView.context }
+
+    init {
+        TODO("not implemented") // set onClickListener to itemView
+        //use adapterPosition to refer to position in RecyclerView
+    }
 
     fun bindUi(album: Album) {
         albumNameTextView.text = album.name

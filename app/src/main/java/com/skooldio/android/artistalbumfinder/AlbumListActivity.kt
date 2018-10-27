@@ -34,7 +34,9 @@ class AlbumListActivity : AppCompatActivity() {
                 Album("Album12", "20/01/2016", 3, "Rock"),
                 Album("Album13", "20/01/2018", 9, "Rock")
         )
-        val adapter = AlbumAdapter()
+        val adapter = AlbumAdapter {
+            TODO("not implemented") //Show toast message with position
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
