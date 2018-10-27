@@ -26,6 +26,5 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         adapter.values = artistList
-        adapter.notifyDataSetChanged()
     }
 }

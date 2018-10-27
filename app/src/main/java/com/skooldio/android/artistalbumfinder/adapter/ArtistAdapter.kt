@@ -13,6 +13,10 @@ import com.skooldio.android.artistalbumfinder.viewholder.ArtistViewHolder
 class ArtistAdapter : RecyclerView.Adapter<ArtistViewHolder>() {
 
     var values: List<Artist> = ArrayList(0)
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): ArtistViewHolder {
         val viewHolder = LayoutInflater.from(parent.context).inflate(R.layout.artist_viewholder, parent, false)
