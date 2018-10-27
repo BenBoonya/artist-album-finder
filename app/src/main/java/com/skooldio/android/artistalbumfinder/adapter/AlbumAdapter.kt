@@ -21,7 +21,7 @@ class AlbumAdapter(private val itemClick: (Int) -> Unit) : RecyclerView.Adapter<
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): AlbumViewHolder {
         val viewHolder = LayoutInflater.from(parent.context).inflate(R.layout.album_viewholder, parent, false)
         return AlbumViewHolder(viewHolder) {
-            TODO("not implemented") //invoke itemClick
+            itemClick(it)
         }
     }
 

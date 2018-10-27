@@ -19,8 +19,9 @@ class AlbumViewHolder(view: View, private val itemClick: (Int) -> Unit) : Recycl
     private val context: Context by lazy { itemView.context }
 
     init {
-        TODO("not implemented") // set onClickListener to itemView
-        //use adapterPosition to refer to position in RecyclerView
+        itemView.setOnClickListener {
+            itemClick(adapterPosition)
+        }
     }
 
     fun bindUi(album: Album) {

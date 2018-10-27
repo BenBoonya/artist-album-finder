@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.skooldio.android.artistalbumfinder.adapter.AlbumAdapter
+import com.skooldio.android.artistalbumfinder.extension.toast
 import com.skooldio.android.artistalbumfinder.model.Album
 import kotlinx.android.synthetic.main.activity_album_list.*
 
@@ -35,7 +36,7 @@ class AlbumListActivity : AppCompatActivity() {
                 Album("Album13", "20/01/2018", 9, "Rock")
         )
         val adapter = AlbumAdapter {
-            TODO("not implemented") //Show toast message with position
+            toast(it.toString())
         }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
