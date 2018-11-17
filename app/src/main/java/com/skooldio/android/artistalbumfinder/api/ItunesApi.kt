@@ -1,9 +1,9 @@
 package com.skooldio.android.artistalbumfinder.api
 
+import com.skooldio.android.artistalbumfinder.model.AlbumApi
 import com.skooldio.android.artistalbumfinder.model.ArtistApi
-import com.skooldio.android.artistalbumfinder.model.BaseResponse
+import com.skooldio.android.artistalbumfinder.model.ResponseWrapper
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,9 +13,9 @@ import retrofit2.http.Query
 interface ItunesApi {
 
     @GET("/search")
-    fun searchForArtist(@Query("term") artistName: String = "", @Query("entity") entity: String = "musicArtist"): Call<Response<ArtistApi>>
+    fun searchForArtist(@Query("term") artistName: String = "", @Query("entity") entity: String = "musicArtist"): Call<ResponseWrapper<ArtistApi>>
 
     @GET("/lookup")
-    fun albumOfArtist(@Query("id") artistId: Int, @Query("entity") entity: String = "album"): Call<Response<BaseResponse>>
+    fun albumOfArtist(@Query("id") artistId: Int, @Query("entity") entity: String = "album"): Call<ResponseWrapper<AlbumApi>>
 
 }
