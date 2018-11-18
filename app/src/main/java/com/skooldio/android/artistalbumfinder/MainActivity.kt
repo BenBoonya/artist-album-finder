@@ -27,9 +27,6 @@ class MainActivity : AppCompatActivity() {
             this.adapter = adapter
         }
 
-        adapter.apply {
-            values = artistList
-            notifyDataSetChanged()
-        }
+        adapter.values = artistList
     }
 }
