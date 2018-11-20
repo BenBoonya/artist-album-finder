@@ -15,7 +15,6 @@ class AlbumViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val trackCountTextView = itemView.trackCountTextView
     private val genreTextView = itemView.genreTextView
     private val releaseDateTextView = itemView.releaseDateTextView
-
     private val context: Context by lazy { itemView.context }
 
     fun bindUi(album: Album) {
