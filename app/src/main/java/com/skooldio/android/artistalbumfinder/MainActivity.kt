@@ -19,25 +19,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val artistList: List<Artist> = listOf(
-                Artist("Twenty One Pilot", "Alternative"),
-                Artist("Bodyslam", "Rock"),
-                Artist("Retrospect", "Metal/Emo"),
-                Artist("BNK48"),
-                Artist("Oasis", "British Rock")
+            Artist("Twenty One Pilot", "Alternative"),
+            Artist("Bodyslam", "Rock"),
+            Artist("Retrospect", "Metal/Emo"),
+            Artist("BNK48"),
+            Artist("Oasis", "British Rock")
         )
         val adapter = ArtistAdapter {
             navigateToAlbumList(it)
         }
 
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = adapter
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+            this.adapter = adapter
+        }
 
         adapter.values = artistList
     }
 
     private fun navigateToAlbumList(artist: Artist) {
-        val intent = Intent(this, AlbumListActivity::class.java)
-        intent.putExtra(ARTIST_NAME_EXTRA, artist.name)
-        startActivity(intent)
+        startActivity(Intent(this, AlbumListActivity::class.java).apply {
+            putExtra(ARTIST_NAME_EXTRA, artist.name)
+        })
     }
 }
