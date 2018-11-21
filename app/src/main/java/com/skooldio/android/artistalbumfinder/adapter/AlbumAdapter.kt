@@ -11,7 +11,7 @@ import com.skooldio.android.artistalbumfinder.viewholder.AlbumViewHolder
  * Created by Boonya Kitpitak on 10/27/18.
  */
 class AlbumAdapter(
-        //TODO Change param type of Lambda
+        //TODO Change param type of Lambda to Album
         private val itemClick: (Int) -> Unit) : RecyclerView.Adapter<AlbumViewHolder>() {
 
     var values: List<Album> = ArrayList(0)
