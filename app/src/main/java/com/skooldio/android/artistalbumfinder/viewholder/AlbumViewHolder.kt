@@ -15,7 +15,6 @@ class AlbumViewHolder(view: View, private val itemClick: (Int) -> Unit) : Recycl
     private val trackCountTextView = itemView.trackCountTextView
     private val genreTextView = itemView.genreTextView
     private val releaseDateTextView = itemView.releaseDateTextView
-
     private val context: Context by lazy { itemView.context }
 
     init {
