@@ -47,8 +47,10 @@ class AlbumListActivity : AppCompatActivity() {
             toast(getString(R.string.label_number_of_track_in_album, it.name, it.trackCount.toString()))
         }
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@AlbumListActivity, LinearLayoutManager.VERTICAL, false)
+            this.adapter = adapter
+        }
 
         getAlbumByArtistId(artistId)
     }

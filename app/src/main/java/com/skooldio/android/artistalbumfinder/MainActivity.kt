@@ -29,8 +29,10 @@ class MainActivity : AppCompatActivity() {
             navigateToAlbumList(it)
         }
 
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = adapter
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+            this.adapter = adapter
+        }
 
         getArtistList("body")
     }
