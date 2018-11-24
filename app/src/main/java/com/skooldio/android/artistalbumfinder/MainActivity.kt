@@ -24,13 +24,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val artistList: List<Artist> = listOf(
-            Artist("Twenty One Pilot", "Alternative"),
-            Artist("Bodyslam", "Rock"),
-            Artist("Retrospect", "Metal/Emo"),
-            Artist("BNK48"),
-            Artist("Oasis", "British Rock")
-        )
         val adapter = ArtistAdapter {
             navigateToAlbumList(it)
         }
