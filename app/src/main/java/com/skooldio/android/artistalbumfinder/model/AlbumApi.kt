@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName
  */
 
 data class AlbumApi(
+    @SerializedName("wrapperType") val wrapperType: String,
     @SerializedName("artistId") val artistId: String,
     @SerializedName("collectionId") val collectionId: String,
     @SerializedName("artistName") val artistName: String,
@@ -15,4 +16,4 @@ data class AlbumApi(
     @SerializedName("artworkUrl100") val artworkBig: String,
     @SerializedName("trackCount") val trackCount: Int,
     @SerializedName("releaseDate") val date: String
-) : BaseResponse()
+)
