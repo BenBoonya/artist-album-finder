@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.MenuItem
 import com.skooldio.android.artistalbumfinder.adapter.AlbumAdapter
 import com.skooldio.android.artistalbumfinder.api.Api
 import com.skooldio.android.artistalbumfinder.extension.toast
@@ -61,4 +62,13 @@ class AlbumListActivity : AppCompatActivity() {
         })
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
