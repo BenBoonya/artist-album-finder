@@ -8,6 +8,7 @@ import android.view.MenuItem
 import com.skooldio.android.artistalbumfinder.adapter.AlbumAdapter
 import com.skooldio.android.artistalbumfinder.api.Api
 import com.skooldio.android.artistalbumfinder.extension.toast
+import com.skooldio.android.artistalbumfinder.model.Album
 import com.skooldio.android.artistalbumfinder.model.AlbumApi
 import com.skooldio.android.artistalbumfinder.model.ResponseWrapper
 import kotlinx.android.synthetic.main.activity_album_list.*
@@ -26,8 +27,7 @@ class AlbumListActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val artistName: String = intent?.extras?.getString(MainActivity.ARTIST_NAME_EXTRA) ?: ""
-        //TODO change from 0 to artist Id from intent
-        val artistId: Int = 0
+        val artistId: Int = intent?.extras?.getInt(MainActivity.ARTIST_ID_EXTRA) ?: 0
         title = artistName
 
         val adapter = AlbumAdapter {
@@ -54,8 +54,7 @@ class AlbumListActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     (recyclerView.adapter as AlbumAdapter).values = response.body()?.result?.filter { it.wrapperType == "collection" }?.map {
-                        TODO("to be implemented")
-                        //map AlbumApi to Album object
+                        Album(it.collectionName, it.date, it.trackCount, it.genreName)
                     } ?: ArrayList()
                 }
             }

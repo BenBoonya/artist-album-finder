@@ -56,11 +56,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToAlbumList(artist: Artist) {
-        val intent = Intent(this, AlbumListActivity::class.java)
-        intent.putExtra(ARTIST_NAME_EXTRA, artist.name)
-        //TODO("to be implemented") passing artist id to AlbumListActivity
-        // using ARTIST_ID_EXTRA as key
-
+        val intent = Intent(this, AlbumListActivity::class.java).apply {
+            putExtra(ARTIST_NAME_EXTRA, artist.name)
+            putExtra(ARTIST_ID_EXTRA, artist.id)
+        }
         startActivity(intent)
     }
 }
