@@ -15,5 +15,6 @@ data class AlbumApi(
     @SerializedName("artworkUrl60") val artworkSmall: String,
     @SerializedName("artworkUrl100") val artworkBig: String,
     @SerializedName("trackCount") val trackCount: Int,
-    @SerializedName("releaseDate") val date: String
+    @SerializedName("releaseDate") val date: String,
+    @SerializedName("primaryGenreName") val genreName: String
 )

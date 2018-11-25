@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val ARTIST_NAME_EXTRA = "artist_name_extra"
+        const val ARTIST_ID_EXTRA = "artist_id_extra"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +58,9 @@ class MainActivity : AppCompatActivity() {
     private fun navigateToAlbumList(artist: Artist) {
         val intent = Intent(this, AlbumListActivity::class.java)
         intent.putExtra(ARTIST_NAME_EXTRA, artist.name)
+        //TODO("to be implemented") passing artist id to AlbumListActivity
+        // using ARTIST_ID_EXTRA as key
+
         startActivity(intent)
     }
 }
