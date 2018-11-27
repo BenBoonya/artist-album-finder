@@ -6,14 +6,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import com.skooldio.android.artistalbumfinder.adapter.AlbumAdapter
 import com.skooldio.android.artistalbumfinder.api.Api
+import com.skooldio.android.artistalbumfinder.extension.enqueue
 import com.skooldio.android.artistalbumfinder.extension.toast
 import com.skooldio.android.artistalbumfinder.model.Album
-import com.skooldio.android.artistalbumfinder.model.AlbumApi
-import com.skooldio.android.artistalbumfinder.model.ResponseWrapper
 import kotlinx.android.synthetic.main.activity_album_list.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * Created by Boonya Kitpitak on 10/27/18.
@@ -41,22 +37,13 @@ class AlbumListActivity : AppCompatActivity() {
         getAlbumByArtistId(artistId)
     }
 
-    //TODO optimize by using extension function
     private fun getAlbumByArtistId(id: Int) {
-        Api.api.albumOfArtist(id).enqueue(object : Callback<ResponseWrapper<AlbumApi>> {
-            override fun onFailure(call: Call<ResponseWrapper<AlbumApi>>, t: Throwable) {
-            }
-
-            override fun onResponse(
-                call: Call<ResponseWrapper<AlbumApi>>,
-                response: Response<ResponseWrapper<AlbumApi>>
-            ) {
-                if (response.isSuccessful) {
-                    (recyclerView.adapter as AlbumAdapter).values = response.body()?.result?.filter { it.wrapperType == "collection" }?.map {
-                        Album(it.collectionName, it.date, it.trackCount, it.genreName)
-                    } ?: ArrayList()
-                }
-            }
+        Api.api.albumOfArtist(id).enqueue({
+            (recyclerView.adapter as AlbumAdapter).values = it?.result?.filter { it.wrapperType == "collection" }?.map { album ->
+                Album(album.collectionName, album.date, album.trackCount, album.genreName)
+            } ?: ArrayList()
+        }, {
+            toast(getString(R.string.label_error_message))
         })
     }
 
