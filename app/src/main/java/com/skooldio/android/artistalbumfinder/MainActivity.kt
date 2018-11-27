@@ -6,13 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.skooldio.android.artistalbumfinder.adapter.ArtistAdapter
 import com.skooldio.android.artistalbumfinder.api.Api
+import com.skooldio.android.artistalbumfinder.extension.enqueue
+import com.skooldio.android.artistalbumfinder.extension.toast
 import com.skooldio.android.artistalbumfinder.model.Artist
-import com.skooldio.android.artistalbumfinder.model.ArtistApi
-import com.skooldio.android.artistalbumfinder.model.ResponseWrapper
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,21 +35,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getArtistList(searchKey: String) {
-        Api.api.searchForArtist(searchKey).enqueue(object : Callback<ResponseWrapper<ArtistApi>> {
-            override fun onFailure(call: Call<ResponseWrapper<ArtistApi>>, t: Throwable) {
-            }
-
-            override fun onResponse(
-                call: Call<ResponseWrapper<ArtistApi>>,
-                response: Response<ResponseWrapper<ArtistApi>>
-            ) {
-                if (response.isSuccessful) {
-                    (recyclerView.adapter as ArtistAdapter).values =
-                            response.body()?.result?.map { Artist(it.name, it.genreName, it.artistId.toInt()) } ?:
-                            ArrayList()
-                }
-            }
-        })
+        Api.api.searchForArtist(searchKey).enqueue({
+            (recyclerView.adapter as ArtistAdapter).values = it?.result?.map { album ->
+                Artist(album.name, album.genreName, album.artistId.toInt())
+            } ?: ArrayList()
+        }, { toast(getString(R.string.label_error_message)) })
     }
 
     private fun navigateToAlbumList(artist: Artist) {
