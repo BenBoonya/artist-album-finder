@@ -3,7 +3,6 @@ package com.skooldio.android.artistalbumfinder
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.MenuItem
 import com.skooldio.android.artistalbumfinder.adapter.AlbumAdapter
 import com.skooldio.android.artistalbumfinder.api.Api
@@ -42,6 +41,7 @@ class AlbumListActivity : AppCompatActivity() {
         getAlbumByArtistId(artistId)
     }
 
+    //TODO optimize by using extension function
     private fun getAlbumByArtistId(id: Int) {
         Api.api.albumOfArtist(id).enqueue(object : Callback<ResponseWrapper<AlbumApi>> {
             override fun onFailure(call: Call<ResponseWrapper<AlbumApi>>, t: Throwable) {
