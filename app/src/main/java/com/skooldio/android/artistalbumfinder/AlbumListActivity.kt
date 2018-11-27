@@ -45,7 +45,6 @@ class AlbumListActivity : AppCompatActivity() {
     private fun getAlbumByArtistId(id: Int) {
         Api.api.albumOfArtist(id).enqueue(object : Callback<ResponseWrapper<AlbumApi>> {
             override fun onFailure(call: Call<ResponseWrapper<AlbumApi>>, t: Throwable) {
-                Log.d("TAG", "error")
             }
 
             override fun onResponse(
