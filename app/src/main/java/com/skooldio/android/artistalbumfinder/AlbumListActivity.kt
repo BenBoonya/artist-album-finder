@@ -3,7 +3,6 @@ package com.skooldio.android.artistalbumfinder
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.MenuItem
 import com.skooldio.android.artistalbumfinder.adapter.AlbumAdapter
 import com.skooldio.android.artistalbumfinder.api.Api
