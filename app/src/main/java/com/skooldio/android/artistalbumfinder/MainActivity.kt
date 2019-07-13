@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.ben.boonya.analytics.AnalyticsManager
+import com.ben.boonya.analytics.events.ViewArtistAlbumEvent
 import com.skooldio.android.artistalbumfinder.adapter.ArtistAdapter
 import com.skooldio.android.artistalbumfinder.api.Api
 import com.skooldio.android.artistalbumfinder.extension.enqueue
@@ -12,6 +14,8 @@ import com.skooldio.android.artistalbumfinder.model.Artist
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private val analyticsManager: AnalyticsManager by lazy { ArtistAlbumFinderAnalytic() }
 
     companion object {
         const val ARTIST_NAME_EXTRA = "artist_name_extra"
@@ -43,6 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToAlbumList(artist: Artist) {
+        analyticsManager.report(ViewArtistAlbumEvent())
         val intent = Intent(this, AlbumListActivity::class.java).apply {
             putExtra(ARTIST_NAME_EXTRA, artist.name)
             putExtra(ARTIST_ID_EXTRA, artist.id)
