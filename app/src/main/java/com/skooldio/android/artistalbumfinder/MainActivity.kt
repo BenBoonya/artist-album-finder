@@ -35,6 +35,10 @@ class MainActivity : AppCompatActivity() {
             this.adapter = adapter
         }
 
+        fab.setOnClickListener {
+            navigateToMultiplatformDemo()
+        }
+
         getArtistList("body")
     }
 
@@ -52,6 +56,11 @@ class MainActivity : AppCompatActivity() {
             putExtra(ARTIST_NAME_EXTRA, artist.name)
             putExtra(ARTIST_ID_EXTRA, artist.id)
         }
+        startActivity(intent)
+    }
+
+    private fun navigateToMultiplatformDemo() {
+        val intent = Intent(this, MultiplatformDemoActivity::class.java)
         startActivity(intent)
     }
 }
